@@ -1,0 +1,17 @@
+Package: WZZ
+Type: Package
+Title: Simple computation of powers
+Version: 0.1.0
+Authors@R: person("Wenzheng", "Zhou", email="wenzheng.zhou@mail.stat.ubc.ca", role=c("aut", "cre"))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: ggplot2
