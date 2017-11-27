@@ -9,28 +9,101 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-__Note__: This package isn't actually meant to be "serious". I made it just for teaching purposes.
-
-Want to compute powers without having to use `^` or `**`? Give `sqrt` some friends by loading the `powers` package! 
-
 ```{r}
 library(WZZ)
 ```
 
-Want squares, cubes, or reciprocals? Easy.
+## Functions
+
+- suqare(x, plot.it=FALSE) is used to take suqare of a vector x, it can be logicals and nuumbers. 
+There is an option to plot the vector vs returned values.
+
+- cube(x, plot.it=FALSE) is used to cube a vector x,  it can be logicals and nuumbers. 
+There is an option to plot the vector vs returned values.
+
+- BoxCox(x,lambda,plot.it=F,omit.na=T) is used to do BoxCox transformation of a vector x, it can be logicals and nuumbers. 
+There is an option to plot the vector vs returned values and omit NA in the data.
+
+- BoxCox.inv(x,lambda,plot.it=F,omit.na=T) is used to do inverse BoxCox transformation of a vector x, 
+it can be logicals and nuumbers. 
+There is an option to plot the vector vs returned values and omit NA in the data.
+
+## Usage
+
+### Want squares, cubes, or Box-Cox transformation? Easy.
 
 ```{r}
 square(1:10)
 cube(1:10)
+BoxCox(1:10,1)
+BoxCox.inv(1:10,1)
 ```
+
+### The function is plot friendly !
+
+```{r}
+square(1:10,plot.it = T)
+```
+
+```{r}
+BoxCox.inv(1:10,2,plot.it = T)
+```
+
+### Could omit NA from vectors in BoxCox/inverse transformation
+
+```{r}
+BoxCox(c(1,NA,2),2,plot.it = F,omit.na = F)
+BoxCox(c(1,NA,2),2,plot.it = F)
+```
+
+### All functions can be operated on logicals or even mixed vectors!
+
+```{r}
+logic_vec <- c(TRUE, TRUE, FALSE)
+square(logic_vec)
+cube(logic_vec)
+BoxCox(logic_vec,1)
+BoxCox.inv(logic_vec,1)
+```
+```{r}
+a <- c(TRUE,1,2)
+cube(a)
+BoxCox(a,1)
+```
+
+## Advanced Use
 
 `apply`-family friendly, too!
 
 ```{r}
-my_list <- list(1:10, 0.5, -0.7)
+my_list <- list(1:10, 0.5, -0.7) 
 ## So base-R-boring!
-lapply(my_list, function(x) x^2)
+lapply(my_list, function(x) x^2) 
 ## Use powers instead!
 lapply(my_list, square)
+```
+
+```{r}
+lapply(my_list, BoxCox,lambda=1)
+```
+
+## Errors
+
+1. All functions in this package are not allowed strings in operating vectors. 
+
+```{r error=TRUE}
+square("a")
+cube(c("1",1))
+```
+```{r error=TRUE}
+BoxCox("a",1)
+BoxCox.inv(c("a",2,1),1)
+```
+
+2. BoxCox and BoxCox.inv also require positive values of vector for certain lambda. It is built in the process of calculating BoxCox transformation.
+
+```{r error=TRUE}
+BoxCox(-1,1/2)
+BoxCox.inv(-1,3/2)
 ```
 

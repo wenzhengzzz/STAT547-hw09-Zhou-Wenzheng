@@ -32,7 +32,7 @@ BoxCox.inv <- function(x,lambda,plot.it=F,omit.na=T){
 		stop('This function expects x as a vector of numbers and logicals.\n',
 				 'You have provided an object of characters')
 	}
-	if(omit.na){x <- na.omit(x)}
+	if(omit.na){x <- x[!is.na(x)]}
 	bcinv <- (x*lambda+1)^(1/lambda)
 	if (NaN %in% bcinv){
 		stop('If lambda is ',lambda,', x should be positive')

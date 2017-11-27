@@ -12,7 +12,7 @@
 
 <meta name="author" content="Wenzheng Zhou" />
 
-<meta name="date" content="2017-11-23" />
+<meta name="date" content="2017-11-26" />
 
 <title>Using the WZZ package</title>
 
@@ -70,22 +70,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Using the <code>WZZ</code> package</h1>
 <h4 class="author"><em>Wenzheng Zhou</em></h4>
-<h4 class="date"><em>2017-11-23</em></h4>
+<h4 class="date"><em>2017-11-26</em></h4>
 
 
 
-<p><strong>Note</strong>: This package isn’t actually meant to be “serious”. I made it just for teaching purposes.</p>
-<p>Want to compute powers without having to use <code>^</code> or <code>**</code>? Give <code>sqrt</code> some friends by loading the <code>powers</code> package!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(WZZ)</code></pre></div>
-<p>Want squares, cubes, or reciprocals? Easy.</p>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<ul>
+<li><p>suqare(x, plot.it=FALSE) is used to take suqare of a vector x, it can be logicals and nuumbers. There is an option to plot the vector vs returned values.</p></li>
+<li><p>cube(x, plot.it=FALSE) is used to cube a vector x, it can be logicals and nuumbers. There is an option to plot the vector vs returned values.</p></li>
+<li><p>BoxCox(x,lambda,plot.it=F,omit.na=T) is used to do BoxCox transformation of a vector x, it can be logicals and nuumbers. There is an option to plot the vector vs returned values and omit NA in the data.</p></li>
+<li><p>BoxCox.inv(x,lambda,plot.it=F,omit.na=T) is used to do inverse BoxCox transformation of a vector x, it can be logicals and nuumbers. There is an option to plot the vector vs returned values and omit NA in the data.</p></li>
+</ul>
+</div>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<div id="want-squares-cubes-or-box-cox-transformation-easy." class="section level3">
+<h3>Want squares, cubes, or Box-Cox transformation? Easy.</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">square</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cube</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>##  [1]    1    8   27   64  125  216  343  512  729 1000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">1</span>)</code></pre></div>
+<pre><code>##  [1] 0 1 2 3 4 5 6 7 8 9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox.inv</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">1</span>)</code></pre></div>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+</div>
+<div id="the-function-is-plot-friendly" class="section level3">
+<h3>The function is plot friendly !</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">square</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">plot.it =</span> T)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox.inv</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">2</span>,<span class="dt">plot.it =</span> T)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<pre><code>##  [1] 1.732051 2.236068 2.645751 3.000000 3.316625 3.605551 3.872983
+##  [8] 4.123106 4.358899 4.582576</code></pre>
+</div>
+<div id="could-omit-na-from-vectors-in-boxcoxinverse-transformation" class="section level3">
+<h3>Could omit NA from vectors in BoxCox/inverse transformation</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">2</span>),<span class="dv">2</span>,<span class="dt">plot.it =</span> F,<span class="dt">omit.na =</span> F)</code></pre></div>
+<pre><code>## [1] 0.0  NA 1.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">2</span>),<span class="dv">2</span>,<span class="dt">plot.it =</span> F)</code></pre></div>
+<pre><code>## [1] 0.0 1.5</code></pre>
+</div>
+<div id="all-functions-can-be-operated-on-logicals-or-even-mixed-vectors" class="section level3">
+<h3>All functions can be operated on logicals or even mixed vectors!</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logic_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+<span class="kw">square</span>(logic_vec)</code></pre></div>
+<pre><code>## [1] 1 1 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cube</span>(logic_vec)</code></pre></div>
+<pre><code>## [1] 1 1 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(logic_vec,<span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1]  0  0 -1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox.inv</span>(logic_vec,<span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 2 2 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">cube</span>(a)</code></pre></div>
+<pre><code>## [1] 1 1 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(a,<span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 0 0 1</code></pre>
+</div>
+</div>
+<div id="advanced-use" class="section level2">
+<h2>Advanced Use</h2>
 <p><code>apply</code>-family friendly, too!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.7</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.7</span>) 
 ## So base-R-boring!
-<span class="kw">lapply</span>(my_list, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<span class="kw">lapply</span>(my_list, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>) </code></pre></div>
 <pre><code>## [[1]]
 ##  [1]   1   4   9  16  25  36  49  64  81 100
 ## 
@@ -104,6 +156,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 
 ## [[3]]
 ## [1] 0.49</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(my_list, BoxCox,<span class="dt">lambda=</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [[1]]
+##  [1] 0 1 2 3 4 5 6 7 8 9
+## 
+## [[2]]
+## [1] -0.5
+## 
+## [[3]]
+## [1] -1.7</code></pre>
+</div>
+<div id="errors" class="section level2">
+<h2>Errors</h2>
+<ol style="list-style-type: decimal">
+<li>All functions in this package are not allowed strings in operating vectors.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">square</span>(<span class="st">&quot;a&quot;</span>)</code></pre></div>
+<pre><code>## Error in pow(x, a = 2, plot.it = plot.it): This function expects x as a vector of numbers and logicals.
+## You have provided an object of characters</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cube</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="dv">1</span>))</code></pre></div>
+<pre><code>## Error in pow(x, a = 3, plot.it = plot.it): This function expects x as a vector of numbers and logicals.
+## You have provided an object of characters</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">1</span>)</code></pre></div>
+<pre><code>## Error in BoxCox(&quot;a&quot;, 1): This function expects x as a vector of numbers and logicals.
+## You have provided an object of characters</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox.inv</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="dv">1</span>)</code></pre></div>
+<pre><code>## Error in BoxCox.inv(c(&quot;a&quot;, 2, 1), 1): This function expects x as a vector of numbers and logicals.
+## You have provided an object of characters</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>BoxCox and BoxCox.inv also require positive values of vector for certain lambda. It is built in the process of calculating BoxCox transformation.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## Error in BoxCox(-1, 1/2): If lambda is 0.5, x should be positive</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BoxCox.inv</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## Error in BoxCox.inv(-1, 3/2): If lambda is 1.5, x should be positive</code></pre>
+</div>
 
 
 
