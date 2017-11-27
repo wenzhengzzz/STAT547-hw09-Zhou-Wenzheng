@@ -22,4 +22,4 @@
 #' square(1:10)
 #' square(-5)
 #' @export
-square <- function(x) pow(x,a=2)
+square <- function(x, plot.it=FALSE) {pow(x, a=2, plot.it=plot.it)}

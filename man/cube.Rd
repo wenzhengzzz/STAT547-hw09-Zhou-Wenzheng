@@ -4,21 +4,21 @@
 \alias{cube}
 \title{Cube a vector}
 \usage{
-cube(x)
+cube(x, plot.it = FALSE)
 }
 \arguments{
-\item{x}{The vector to be squared.}
+\item{x}{The vector to be cubed.}
 }
 \value{
 A vector that is the cube of \code{x}.
 }
 \description{
-That's it -- this function just squares a vector.
+That's it -- this function just cube a vector.
 }
 \details{
 Inorder to build a package first load package roxygen2
 
-then use roxygen2::roxygenize()
+use roxygen2::roxygenize()
 
 
 Here are some reasons why putting a list in this section is excessive:
